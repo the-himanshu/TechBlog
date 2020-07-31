@@ -1,0 +1,53 @@
+{% extends 'frontBase.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<section class="hero is-success is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        LOGIN
+      </h1>
+
+      <div class="columns">
+        <div class="column is-offset-2 is-8">
+          <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+    
+            <div class="field">
+              <label for="{{ form.username.id_for_label }}" class="label">
+                Username
+              </label>
+              <div class="control">
+                {{ form.username|add_class:"input" }}
+              </div>
+              <p class="help is-danger">{{ form.username.errors }}</p>
+            </div>
+    
+            <div class="field">
+              <label for="{{ form.password.id_for_label }}" class="label">
+                Password
+              </label>
+              <div class="control">
+                {{ form.password|add_class:"input" }}
+              </div>
+              <p class="help is-danger">{{ form.password.errors }}</p>
+            </div>
+    
+            <div class="field">
+              <div class="control">
+                <button class="button is-link" style="margin-left:43%;">LOGIN</button>
+              </div>
+            </div>
+          </form>
+          <form action="\"  style="margin-left:36%;font-size:20px;">
+              <h2>Not a User Yet : <button class="button is-link">REGISTER</button></h2>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %} 
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+    
+    .head_text {
+        color: white;
+    }
+    
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to TechBlogger.com </h3>
+                    <p class="text-light">Developed by Himanshu Malik &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            {% if user.is_authenticated %}
+                            Logged in as <b>{{ user.get_username }}</b>
+                            {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="container">
+            <nav class="navbar navbar-expand-lg"  style="margin-top:1%;">
+        <form action="makePost" method="get" style="margin-right:1%;margin-left:5%;">
+            <button type="submit" class="btn btn-primary">Write a new Post</button>
+        </form>
+        <form action="portfolio" method="get" style="margin-right:1%;">
+            <button type="submit" class="btn btn-primary">View Developer's Portfolio</button>
+        </form>
+        <form action="profile" method="get" style="margin-right:1%;">
+                <button type="submit" class="btn btn-primary">View Profile</button>
+            </form>
+        <form action="logout" method="get" style="margin-right:1%;">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+        </nav>
+        
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in posts %}
+            <div class="card mb-4"  style="margin-top:1%;">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.publisher }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content|slice:":200" }}</p>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}            
+        </div>
+        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+    </div>
+    {% if posts.has_other_pages %}
+    <nav aria-label="Page navigation conatiner"></nav>
+    <ul class="pagination justify-content-center">
+      {% if posts.has_previous %}
+      <li><a href="?page={{ posts.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+      {% endif %}
+      {% if posts.has_next %}
+      <li><a href="?page={{ posts.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+     {% endif %}
+    </ul>
+    </nav>
+  </div>
+  {% endif %}
+</div>
+{%endblock%}
