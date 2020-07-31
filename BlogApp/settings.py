@@ -26,7 +26,7 @@ SECRET_KEY = 'xpj#(tvw0meap-@cfst#n7f8yxhqz#@mlmcs$d6l=vx=l-rn1x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tech-blog-site.herokuapp.com' ,  '127.0.0.1']
+ALLOWED_HOSTS = ['tech-blog-site.herokuapp.com']
 
 
 # Application definition
