@@ -12,7 +12,7 @@
       <div class="columns">
         <div class="column is-offset-2 is-8">
 
-          <form action="{% url 'register' %}" method="POST" autocomplete="off" style='width:350px;margin-left:30%;'>
+          <form class='register' action="{% url 'register' %}" method="POST" autocomplete="off">
             {% csrf_token %}
     
             <div class="field">
@@ -47,11 +47,11 @@
     
             <div class="field">
               <div class="control">
-                <button class="button is-link" style="margin-left:36%;">REGISTER</button>
+                <button class="button is-link one">REGISTER</button>
               </div>
             </div>
           </form>
-          <form action="login\"  style="margin-left:36%;font-size:20px;">
+          <form action="login\" class='two'>
                 <h2>Already a User : <button class="button is-link">LOGIN</button></h2>
           </form>
         </div>
@@ -60,5 +60,4 @@
     </div>
   </div>
 </section>
-The completed registration UI looks like this.
 {% endblock %}
