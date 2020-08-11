@@ -23,18 +23,7 @@
             <div class=" col-md-8 col-md-10 mx-auto">
                 <div class="site-heading">
                     <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to TechBlogger.com </h3>
-                    <p class="text-light">Developed by Himanshu Malik &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            {% if user.is_authenticated %}
+                    <p class="text-light">{% if user.is_authenticated %}
                             Logged in as <b>{{ user.get_username }}</b>
                             {% endif %}
                     </p>
@@ -44,18 +33,15 @@
     </div>
 </header>
     <div class="container">
-            <nav class="navbar navbar-expand-lg"  style="margin-top:1%;">
-        <form action="makePost" method="get" style="margin-right:1%;margin-left:5%;">
-            <button type="submit" class="btn btn-primary">Write a new Post</button>
+            <nav class="navbar navbar-expand-lg navTop boxes">
+        <form action="makePost" method="get">
+            <button type="submit" class="btn btn-primary box">Write a new Post</button>
         </form>
-        <form action="portfolio" method="get" style="margin-right:1%;">
-            <button type="submit" class="btn btn-primary">View Developer's Portfolio</button>
-        </form>
-        <form action="profile" method="get" style="margin-right:1%;">
-                <button type="submit" class="btn btn-primary">View Profile</button>
+        <form action="profile" method="get">
+                <button type="submit" class="btn btn-primary box">View Profile</button>
             </form>
-        <form action="logout" method="get" style="margin-right:1%;">
-            <button type="submit" class="btn btn-primary">Logout</button>
+        <form action="logout" method="get">
+            <button type="submit" class="btn btn-primary box">Logout</button>
         </form>
         </nav>
         
@@ -63,12 +49,12 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
             {% for post in posts %}
-            <div class="card mb-4"  style="margin-top:1%;">
+            <div class="card mb-4 cards">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.publisher }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.content|slice:":200" }}</p>
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
             {% endfor %}            
