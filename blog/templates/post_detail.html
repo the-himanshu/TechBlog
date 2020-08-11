@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container">
+<div class="container  body-post">
   <div class="row">
     <div class="col-md-8 card mb-4  mt-3 left  top">
       <div class="card-body">
@@ -11,13 +11,13 @@
     </div>
     {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
 
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-8 card mb-4 mt-3 count">
       <div class="card-body">
         <!-- comments -->
         <h2>{{ comments.count }} comments</h2>
 
         {% for comment in comments %}
-        <div class="comments" style="padding: 10px;">
+        <div class="comments">
           <p class="font-weight-bold">
             {{ comment.name }}
             <span class=" text-muted font-weight-normal">
@@ -29,19 +29,26 @@
         {% endfor %}
       </div>
     </div>
-    <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
         {% if new_comment %}
         <div class="alert alert-success" role="alert">
           Your comment is awaiting moderation
         </div>
         {% else %}
-        <h3>Leave a comment</h3>
-        <form method="post" style="margin-top: 1.3em;">
-          {{ comment_form.as_p }}
-          {% csrf_token %}
-          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-        </form>
+        <div class="col-md-8 card mb-4 mt-3 body-com">
+            <div class="card-body">
+              
+              <h3>Leave a comment</h3>
+              <form method="post" class='box2'>
+                <p><label for="id_name">Name:</label> <input class='namebox' type="text" name="name" maxlength="80" required id="id_name"></p>
+      <p><label style='margin-top:5px;' for="id_email">Email:</label> <input class='emailbox' type="email" name="email" maxlength="254" required id="id_email"></p>
+      <p><label for="id_body">Body:</label> <textarea class='bodybox' name="body" cols="20" rows="5" required id="id_body">
+      </textarea></p>
+                <input type="hidden" name="csrfmiddlewaretoken" value="Rl3Us0u76adtasNiAuoPONN4576WgOANOgyYBw5iEJzo0xxcxrUUIaeZudMfHJTG">
+                <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+              </form>
+              
+            </div>
         {% endif %}
       </div>
     </div>
