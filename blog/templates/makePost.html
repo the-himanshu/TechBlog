@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container my-5">
+<div class="container my-5 post">
     <h3>&nbsp&nbsp&nbspWrite Your Post Here</h3>
     <form action="savePost/" method="post">{% csrf_token %}
   <div class="form-group">
@@ -12,7 +12,7 @@
   <div class="form-group">
       <textarea class="form-control mx-4 my-4" id="cont" rows="10" name="cont" placeholder="Enter Content"></textarea>
   </div>
-   <button style='margin-left:530px;' type="submit" class="btn btn-success">Submit</button>
+   <button type="submit" class="btn btn-success submit">Submit</button>
 </form>
 </div>
 
